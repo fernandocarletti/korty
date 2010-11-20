@@ -208,7 +208,7 @@ class Smarty extends Smarty_Internal_Data {
     public $registered_plugins = array(); 
     // plugin search order
     public $plugin_search_order = array('function', 'block', 'compiler', 'class'); 
-    // registered objects
+    // registered objectsnull
     public $registered_objects = array(); 
     // registered classes
     public $registered_classes = array(); 
