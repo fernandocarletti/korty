@@ -5,19 +5,19 @@ if(!defined("DS")) {
 }
 
 if(!defined("KORTYPATH")) {
-	define("KORTYPATH", realpath(dirname(__FILE__).DS."..".DS.".."));
+	define("KORTYPATH", realpath(dirname(__FILE__).DS."..".DS."..").DS);
 }
 
 require_once(KORTYPATH.DS."libs".DS."Smarty.class.php");
 
 class Korty_Main extends Smarty {
 
-	public function test() {
+	public function __construct() {
 		$config = kohana::config("korty");
-		
+
 		parent::__construct();
 		
-		$this->templates_dir = $config['template_dir'];
+		$this->template_dir = $config['template_dir'];
 		$this->compile_dir = $config['compile_dir'];
 		$this->config_dir = $config['config_dir'];
 		$this->plugins_dir = $config['plugins_dir'];

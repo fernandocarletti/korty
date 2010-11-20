@@ -2,10 +2,10 @@
 
 return array (
 
-	'template_dir'					=> APPPATH.DS.'view',
-	'compile_dir'					=> APPPATH.DS.'cache',
-	'config_dir'					=> APPPATH.DS.'config',
-	'plugins_dir'					=> KORTYPATH.DS.'libs'.DS.'plugins',
+	'template_dir'					=> APPPATH.'views',
+	'compile_dir'					=> APPPATH.'cache',
+	'config_dir'					=> APPPATH.'config',
+	'plugins_dir'					=> array(APPPATH."plugins", KORTYPATH."plugins", SMARTY_SYSPLUGINS_DIR),
 	'debugging'						=> false,
 	'debug_tpl'						=> null,
 	'debugging_ctrl'				=> 'NONE',
