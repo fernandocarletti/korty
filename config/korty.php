@@ -2,6 +2,8 @@
 
 return array (
 
+	'templateAutoLoad' => true,
+
 	'template_dir'					=> APPPATH.'views',
 	'compile_dir'					=> APPPATH.'cache',
 	'config_dir'					=> APPPATH.'config',

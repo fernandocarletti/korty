@@ -51,5 +51,18 @@ class Korty_Main extends Smarty {
 		$this->default_modifiers = $config['default_modifiers'];
 		$this->default_resource_type = $config['default_resource_type']; 
 	}
+	
+	
+	public function assignFromArray(array $array, $value = null, $nocache = false) {
+		foreach($array as $key => $value) {
+			$this->assign($key, $value, $value = null, $nocache = false);
+		}
+	}
+
+	public function assignByRefFromArray(array $array, $value = null, $nocache = false) {
+		foreach($array as $key => $value) {
+			$this->assignByRef($key, $value, $value = null, $nocache = false);
+		}
+	}
 
 }
