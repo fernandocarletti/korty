@@ -1,8 +1,18 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 
 return array (
+	
+	// Enable template autoload
+	'template_autoload' => true,
 
-	'templateAutoLoad' => true,
+	// Template autoload ignore list
+	'ignore_autoload' => array(
+		'index' => array(
+			'test'
+		),
+		'unittest',
+		'userguide'
+	),
 
 	'template_dir'					=> APPPATH.'views',
 	'compile_dir'					=> APPPATH.'cache',

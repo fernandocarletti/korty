@@ -8,15 +8,27 @@ if(!defined("KORTYPATH")) {
 	define("KORTYPATH", realpath(dirname(__FILE__).DS."..".DS."..").DS);
 }
 
+// Include Smarty library
 require_once(KORTYPATH.DS."libs".DS."Smarty.class.php");
 
+/**
+ * Korty Main class.
+ * 
+ * @author Fernando Carlétti
+ *
+ */
 class Korty_Main extends Smarty {
 
-	public function __construct() {
-		$config = kohana::config("korty");
-
+	/**
+	 * The constructor set the configuration of Smarty. 
+	 */
+	public function __construct()
+	{
 		parent::__construct();
 		
+		//Setting up all Smarty configuration settings on korty config file.
+		$config = kohana::config("korty");
+
 		$this->template_dir = $config['template_dir'];
 		$this->compile_dir = $config['compile_dir'];
 		$this->config_dir = $config['config_dir'];
@@ -52,17 +64,69 @@ class Korty_Main extends Smarty {
 		$this->default_resource_type = $config['default_resource_type']; 
 	}
 	
-	
-	public function assignFromArray(array $array, $value = null, $nocache = false) {
-		foreach($array as $key => $value) {
-			$this->assign($key, $value, $value = null, $nocache = false);
+	/**
+	 * Assing Smarty template variables from an associative array
+	 * 
+	 * @param array $array
+	 * @param bool $nocache
+	 */
+	public function assign_by_array(array $array, $nocache = false)
+	{
+		foreach($array as $key => $value)
+		{
+			$this->assign($key, $value, $value, $nocache			);
 		}
 	}
 
-	public function assignByRefFromArray(array $array, $value = null, $nocache = false) {
-		foreach($array as $key => $value) {
-			$this->assignByRef($key, $value, $value = null, $nocache = false);
+	/**
+	 * Render a template based on action name or template file name.
+	 * 
+	 * @param mixed $template
+	 * @param string $cache_id
+	 * @param string $compile_id
+	 * @param string $parent
+	 */
+	public function render($template, $cache_id = null, $compile_id = null, $parent = null)
+	{
+		// Get the Request instance and set the action as rendered. It prevent from korty to send an exception
+		// when the template doesn't exists.
+		$request = Request::instance();
+		$request->korty_rendered = true;
+		
+		// If its and array, we parse the controller and/or action indexes associations 
+		if(is_array($template))
+		{
+			if(array_key_exists('controller', $template))
+			{
+				$controller = $template['controller'];
+			}
+			else
+			{
+				$controller = $request->controller;
+			}
+			
+			if(array_key_exists('action', $template))
+			{
+				$action = $template['action'];
+			}
+			
+			$template = $controller.'/'.$action.'.tpl';
 		}
+		
+		// If it's an string ending with .tpl, we assume that it's the filename
+		elseif(preg_match('/\.tpl$/', $template))
+		{
+			$template = $template;
+		}
+		
+		// If the template don't end with .tpl and is not an array, we get the template by concatenating .tpl at the end of the string.
+		else
+		{
+			$template = $template.'.tpl';
+		}
+		
+		// So... diplay it!
+		$this->display($template, $cache_id = null, $compile_id = null, $parent = null);
 	}
 
 }
