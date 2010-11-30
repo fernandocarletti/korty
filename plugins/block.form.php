@@ -65,7 +65,7 @@ function smarty_block_form($params, $content, $template, &$repeat)
 	}
 	
 	// Setting the auto id
-	if(!isset($params['id']))
+	if( ! isset($params['id']))
 	{
 		$attributes .= 'id="form_'.($ids++).'" ';
 	}

@@ -1,3 +1,58 @@
-Well...
+88      a8P                                                 
+88    ,88'                              ,d                  
+88  ,88"                                88                  
+88,d88'       ,adPPYba,   8b,dPPYba,  MM88MMM  8b       d8  
+8888"88,     a8"     "8a  88P'   "Y8    88     `8b     d8'  
+88P   Y8b    8b       d8  88            88      `8b   d8'   
+88     "88,  "8a,   ,a8"  88            88,      `8b,d8'    
+88       Y8b  `"YbbdP"'   88            "Y888      Y88'     
+                                                   d8'      
+                                                  d8'   
 
-Just experiencing some ideas... you will understand soon ;D
+Korty 1.0 Alpha
+===============================================================================
+
+What is it?
+-------------------------------------------------------------------------------
+	It's called Korty, for those who didn't get it, KOhana + smaRTY. I think
+Kohana v3 could help us with a little bit things more, integrating a powerful
+template engine, like Smarty 3.
+
+	Now, imagine it with some beatiful conventions and... KAZAM! This is it!
+	
+	Inspired by the facilities of Ruby on Rails.
+	
+	
+How it work?
+-------------------------------------------------------------------------------
+	It's a Kohana Module, with a smarty version inside. It have some small
+functions to help writing templates, manage URL's, forms and generating
+basic code.
+	
+	
+Basic usage
+-------------------------------------------------------------------------------
+
+Application directory structure
+	Be happy! You won't need to create directories to use it, unless you wish
+to use custom Smarty plugins. In this case, you must create a folder called
+plugins in the root of your application folder.
+
+	All Smarty configuration files (.conf) can be created in the application
+config directory.
+
+	Smarty compiled files are located in application cache directory.
+	
+	Finally, all the templates must be placed in application views directory.
+	
+Plugins
+	Blocks:
+	form_tag: create a html form tag. You can use all html params as function
+params. if you don't set action param,
+
+	Functions:
+	url: to params defines all links to your application using kohana
+url::site() function.
+
+Classes
+	Korty_Main
