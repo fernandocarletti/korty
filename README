@@ -53,6 +53,3 @@ params. if you don't set action param,
 	Functions:
 	url: to params defines all links to your application using kohana
 url::site() function.
-
-Classes
-	Korty_Main
