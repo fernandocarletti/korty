@@ -70,8 +70,10 @@ function smarty_block_form($params, $content, $template, &$repeat)
 		$attributes .= 'id="form_'.($ids++).'" ';
 	}
 	
+	// Join attributes from array
 	foreach($params as $key => $value)
 	{
+		// Well... action is not needed, it has been set above
 		if(strtolower($key) == 'action')
 		{
 			continue;
@@ -80,6 +82,7 @@ function smarty_block_form($params, $content, $template, &$repeat)
 		$attributes .= $key.'="'.$value.'" ';
 	}
 	
+	// Put all together to make the tag
 	$form = "<form {$attributes}>"
 	      . $content
 	      . "</form>";

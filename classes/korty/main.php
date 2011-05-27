@@ -14,7 +14,7 @@ require_once(KORTYPATH.DS."libs".DS."Smarty.class.php");
 /**
  * Korty Main class.
  * 
- * @author Fernando Carlétti
+ * @author Fernando Carlï¿½tti
  *
  */
 class Korty_Main extends Smarty {
@@ -74,7 +74,7 @@ class Korty_Main extends Smarty {
 	{
 		foreach($array as $key => $value)
 		{
-			$this->assign($key, $value, $value, $nocache			);
+			$this->assign($key, $value, $value, $nocache);
 		}
 	}
 
@@ -127,6 +127,15 @@ class Korty_Main extends Smarty {
 		
 		// So... diplay it!
 		$this->display($template, $cache_id = null, $compile_id = null, $parent = null);
+	}
+	
+	/**
+	 * Disable the auto render feature.
+	 */
+	public function disable_autorender()
+	{
+		$request = Request::instance();
+		$request->korty_rendered = TRUE;
 	}
 
 }
