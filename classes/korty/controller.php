@@ -35,8 +35,12 @@ class Korty_Controller extends Kohana_Controller {
 					foreach($controller as $controller_name => $action_name)
 					{
 <<<<<<< HEAD
+<<<<<<< HEAD
 						if($this->request->controller == $controller_name AND $this->request->action == $action_name)
 						{
+=======
+						if($this->request->controller() == $controller_name AND $this->request->action() == $action_name) {
+>>>>>>> 35ba21db297c94506125835337cd30bc184c85fc
 =======
 						if($this->request->controller() == $controller_name AND $this->request->action() == $action_name) {
 >>>>>>> 35ba21db297c94506125835337cd30bc184c85fc
@@ -48,8 +52,12 @@ class Korty_Controller extends Kohana_Controller {
 				else
 				{
 <<<<<<< HEAD
+<<<<<<< HEAD
 					if($this->request->controller == $controller)
 					{
+=======
+					if($this->request->controller() == $controller) {
+>>>>>>> 35ba21db297c94506125835337cd30bc184c85fc
 =======
 					if($this->request->controller() == $controller) {
 >>>>>>> 35ba21db297c94506125835337cd30bc184c85fc
@@ -70,7 +78,11 @@ class Korty_Controller extends Kohana_Controller {
 			{
 				// The layout organization format
 <<<<<<< HEAD
+<<<<<<< HEAD
 				$template_file = $this->request->controller.'/'.$this->request->action.'.tpl';
+=======
+				$template = $this->request->controller().'/'.$this->request->action().'.tpl';
+>>>>>>> 35ba21db297c94506125835337cd30bc184c85fc
 =======
 				$template = $this->request->controller().'/'.$this->request->action().'.tpl';
 >>>>>>> 35ba21db297c94506125835337cd30bc184c85fc
@@ -88,9 +100,12 @@ class Korty_Controller extends Kohana_Controller {
 				if(!isset($this->request->korty_rendered))
 				{
 <<<<<<< HEAD
+<<<<<<< HEAD
 					$message = "Template for {$this->request->controller}#{$this->request->action} not found!\n"
 					         . "Did you forgot to create the {$template_file} file?";
 =======
+=======
+>>>>>>> 35ba21db297c94506125835337cd30bc184c85fc
 					$message = "Template for {$this->request->controller()}#{$this->request->action()} not found!\n"
 					         . "Did you forgot to create the {$template} file?";
 >>>>>>> 35ba21db297c94506125835337cd30bc184c85fc
