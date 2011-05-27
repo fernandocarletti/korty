@@ -34,8 +34,12 @@ class Korty_Controller extends Kohana_Controller {
 				{
 					foreach($controller as $controller_name => $action_name)
 					{
+<<<<<<< HEAD
 						if($this->request->controller == $controller_name AND $this->request->action == $action_name)
 						{
+=======
+						if($this->request->controller() == $controller_name AND $this->request->action() == $action_name) {
+>>>>>>> 35ba21db297c94506125835337cd30bc184c85fc
 							$ignore_autoload = TRUE;
 							break;
 						}
@@ -43,8 +47,12 @@ class Korty_Controller extends Kohana_Controller {
 				}
 				else
 				{
+<<<<<<< HEAD
 					if($this->request->controller == $controller)
 					{
+=======
+					if($this->request->controller() == $controller) {
+>>>>>>> 35ba21db297c94506125835337cd30bc184c85fc
 						$ignore_autoload = TRUE;
 						break;
 					}
@@ -61,7 +69,11 @@ class Korty_Controller extends Kohana_Controller {
 			if( ! $ignore_autoload)
 			{
 				// The layout organization format
+<<<<<<< HEAD
 				$template_file = $this->request->controller.'/'.$this->request->action.'.tpl';
+=======
+				$template = $this->request->controller().'/'.$this->request->action().'.tpl';
+>>>>>>> 35ba21db297c94506125835337cd30bc184c85fc
 				
 				// Load only if template exists
 				if($this->korty->templateExists($template_file))
@@ -75,8 +87,13 @@ class Korty_Controller extends Kohana_Controller {
 				// If some template was loaded before by korty::render(), we don't need to warn about missing template =]
 				if(!isset($this->request->korty_rendered))
 				{
+<<<<<<< HEAD
 					$message = "Template for {$this->request->controller}#{$this->request->action} not found!\n"
 					         . "Did you forgot to create the {$template_file} file?";
+=======
+					$message = "Template for {$this->request->controller()}#{$this->request->action()} not found!\n"
+					         . "Did you forgot to create the {$template} file?";
+>>>>>>> 35ba21db297c94506125835337cd30bc184c85fc
 				
 					throw new Kohana_Exception($message);
 				}
