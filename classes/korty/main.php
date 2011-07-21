@@ -1,10 +1,10 @@
 <?php defined("SYSPATH") or die("No direct access allowed.");
 
-if(!defined("DS")) {
+if( ! defined("DS")) {
 	define("DS", DIRECTORY_SEPARATOR);
 }
 
-if(!defined("KORTYPATH")) {
+if( ! defined("KORTYPATH")) {
 	define("KORTYPATH", realpath(dirname(__FILE__).DS."..".DS."..").DS);
 }
 
@@ -88,10 +88,11 @@ class Korty_Main extends Smarty {
 	 */
 	public function render($template, $cache_id = null, $compile_id = null, $parent = null)
 	{
-		// Get the Request instance and set the action as rendered. It prevent from korty to send an exception
-		// when the template doesn't exists.
-		$request = Request::instance();
-		$request->korty_rendered = true;
+		$session = Session::instance();
+		$session->set('_korty_must_render', TRUE);
+		
+		// Disable autorender. It prevents korty to send an exception when the template doesn't exists.
+		$this->disable_autorender();
 		
 		// If its and array, we parse the controller and/or action indexes associations 
 		if(is_array($template))
@@ -102,7 +103,7 @@ class Korty_Main extends Smarty {
 			}
 			else
 			{
-				$controller = $request->controller;
+				$controller = Request::current()->controller();
 			}
 			
 			if(array_key_exists('action', $template))
@@ -111,22 +112,35 @@ class Korty_Main extends Smarty {
 			}
 			
 			$template = $controller.'/'.$action.'.tpl';
-		}
-		
+		}		
 		// If it's an string ending with .tpl, we assume that it's the filename
 		elseif(preg_match('/\.tpl$/', $template))
 		{
 			$template = $template;
 		}
-		
 		// If the template don't end with .tpl and is not an array, we get the template by concatenating .tpl at the end of the string.
 		else
 		{
 			$template = $template.'.tpl';
 		}
+
+		// If still not set...
+		$controller = isset($controller) ? $controller : $controller = Request::current()->controller();
 		
-		// So... diplay it!
-		$this->display($template, $cache_id = null, $compile_id = null, $parent = null);
+		$session->set('_korty_template_file', $template);
+		
+		// Is there a custom controller layout?
+		if($this->templateExists("layouts/{$controller}.tpl"))
+		{
+			$layout = "layouts/{$controller}.tpl";
+		}
+		else
+		{
+			$layout = 'layouts/application.tpl';	
+		}
+
+		// Ok... Display it!
+		$this->display($layout, $cache_id = null, $compile_id = null, $parent = null);
 	}
 	
 	/**
@@ -134,8 +148,8 @@ class Korty_Main extends Smarty {
 	 */
 	public function disable_autorender()
 	{
-		$request = Request::instance();
-		$request->korty_rendered = TRUE;
+		$session = Session::instance();
+		$session->set('_korty_rendered', TRUE);
 	}
 
 }

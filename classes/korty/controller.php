@@ -19,6 +19,9 @@ class Korty_Controller extends Kohana_Controller {
 	 */
 	public function after()
 	{
+		// Get session instance to manage template render status.
+		$session = Session::instance();
+		
 		// Execute template autoloading
 		if(kohana::config("korty.template_autoload"))
 		{ 
@@ -48,7 +51,7 @@ class Korty_Controller extends Kohana_Controller {
 					}
 				}
 				
-				// If the ignored item hass been found, leave the loop
+				// If the ignored item has been found, leave the loop
 				if($ignore_autoload)
 				{
 					break;
@@ -65,19 +68,21 @@ class Korty_Controller extends Kohana_Controller {
 				if($this->korty->templateExists($template_file))
 				{
 					$session = Session::instance();
-					$session->set('korty_template_file', $template_file);
-					$this->korty->display('layouts/application.tpl');
-					$this->request->korty_rendered = TRUE;
+					$session->set('_korty_template_file', $template_file);
+					$this->korty->render($template_file);
+					$session->set('_korty_rendered', TRUE);
 				}
 				
 				// If some template was loaded before by korty::render(), we don't need to warn about missing template =]
-				if(!isset($this->request->korty_rendered))
+				if( ! $session->get('_korty_rendered'))
 				{
 					$message = "Template for {$this->request->controller()}#{$this->request->action()} not found!\n"
 					         . "Did you forgot to create the {$template_file} file?";
 				
 					throw new Kohana_Exception($message);
 				}
+				
+				$session->delete('_korty_rendered');
 			}
 		}
 	}
