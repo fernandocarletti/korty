@@ -11,9 +11,9 @@ function smarty_function_stylesheet($params, $template) {
 	foreach($params as $key => $value) {
 		if(strtolower($key) == 'src') {
 			$src = URL::base().'public/stylesheets/'.$params['src'];
-			$stylesheet_tag .= ' href="{$src}" ';
+			$stylesheet_tag .= " href=\"{$src}\" ";
 		} else {
-			$stylesheet_tag .= ' {$key}="{$value}" ';
+			$stylesheet_tag .= " {$key}=\"{$value}\" ";
 		}
 	}
 	
