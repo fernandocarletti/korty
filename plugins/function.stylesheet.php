@@ -1,11 +1,12 @@
 <?php 
 
 function smarty_function_stylesheet($params, $template) {
-	$stylesheet_tag = '<link rel="stylesheet"';
+	$stylesheet_tag = '<link rel="stylesheet" type="text/css"';
 
 	if($params['less'])
 	{
-		$stylesheet_tag = '<link rel="stylesheet/less"';
+		$stylesheet_tag = '<link rel="stylesheet/less" type="text/css"';
+		unset($params['less']);
 	}
 		
 	foreach($params as $key => $value) {
