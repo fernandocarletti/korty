@@ -152,4 +152,15 @@ class Korty_Main extends Smarty {
 		$session->set('_korty_rendered', TRUE);
 	}
 
+	/**
+	 * Write the flash message to show with flash smarty block.
+	 *
+	 * @param $id string the flash message identifier
+	 * @param $message string the message
+	 */
+	public function flash($id, $message)
+	{
+		Session::instance()->set("_korty_flash_{$id}", $message);
+	}
+
 }
