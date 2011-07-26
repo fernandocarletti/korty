@@ -1,4 +1,4 @@
-<?php 
+<?php defined('SYSPATH') or die('No direct access allowed.');
 
 function smarty_function_script($params, $template) {
 	$script_tag = "<script type=\"text/javascript\"";

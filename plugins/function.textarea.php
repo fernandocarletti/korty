@@ -1,24 +1,21 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 
 /**
- * Build a input of text type
+ * Build a textarea.
  * 
- * @param unknown_type $params
- * @param unknown_type $template
+ * @param mixed $params
+ * @param mixed $template
  * @throws Exception
  */
-function smarty_function_textfield($params, $template)
+function smarty_function_textarea($params, $template)
 {
 	
 	if( ! isset($params['id']))
 	{
-		throw new Exception('Id param needed for textfield.');
+		throw new Exception('Id param needed for textarea.');
 	}
 
-	$tag = new Korty_Html('input');
-	$tag->add_param('type', 'text');
-
-	unset($params['type']);
+	$tag = new Korty_Html('textarea');
 
 	if( ! isset($params['name']))
 	{
@@ -27,7 +24,7 @@ function smarty_function_textfield($params, $template)
 
 	if(isset($_POST[$params['id']]) AND $_POST[$params['id']] != '')
 	{
-		$params['value'] = $_POST[$params['id']];
+		$tag->set_content($_POST[$params['id']]);
 	}
 
 	$tag->add_params_from_array($params);

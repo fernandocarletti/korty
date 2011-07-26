@@ -1,4 +1,5 @@
-<?php
+<?php defined('SYSPATH') or die('No direct access allowed.');
+
 /**
  * 
  * Include a partial file.
@@ -14,11 +15,11 @@ function smarty_function_partial($params, $template)
 		throw new Kohana_Exception('Missing name param.');
 	}
 
-	$request = Request::instance();
+	$request = Request::current();
 	
 	// By convention, the partial is located in controller view folder, and
 	// it's file name starts with an underscore (_)
-	$template_file_name = $request->controller.'/_'.$params['name'].'.tpl';
+	$template_file_name = $request->controller().'/_'.$params['name'].'.tpl';
 	
 	// A partial must exists if it's called
 	if( ! $template->templateExists($template_file_name))

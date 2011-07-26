@@ -1,4 +1,4 @@
-<?php 
+<?php defined('SYSPATH') or die('No direct access allowed.');
 
 function smarty_function_stylesheet($params, $template) {
 	$stylesheet_tag = '<link rel="stylesheet" type="text/css"';

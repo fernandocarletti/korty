@@ -1,0 +1,3 @@
+set interpreter='/usr/bin/php'
+
+$interpreter ./korty.php

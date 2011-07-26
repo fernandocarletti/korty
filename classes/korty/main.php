@@ -9,7 +9,7 @@ if( ! defined("KORTYPATH")) {
 }
 
 // Include Smarty library
-require_once(KORTYPATH.DS."libs".DS."Smarty.class.php");
+require_once(KORTYPATH.DS.'vendor'.DS.'smarty'.DS.'Smarty.class.php');
 
 /**
  * Korty Main class.
