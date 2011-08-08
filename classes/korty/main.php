@@ -153,6 +153,15 @@ class Korty_Main extends Smarty {
 	}
 
 	/**
+	 * Enable the auto render feature.
+	 */
+	public function enable_autorender()
+	{
+		$session = Session::instance();
+		$session->set('_korty_rendered', FALSE);
+	}
+
+	/**
 	 * Write the flash message to show with flash smarty block.
 	 *
 	 * @param $id string the flash message identifier
