@@ -23,10 +23,10 @@ class Korty_Controller extends Kohana_Controller {
 		$session = Session::instance();
 
 		// Execute template autoloading
-		if(kohana::config("korty.template_autoload"))
+		if(kohana::$config->load("korty.template_autoload"))
 		{ 
 			// Retrieve the list of controllers or actions to ignore the autoload execution
-			$ignored_list = kohana::config('korty.ignore_autoload');
+			$ignored_list = kohana::$config->load('korty.ignore_autoload');
 			$ignore_autoload = $session->get('_korty_disable_autorender');
 			
 			// Loop ignored list

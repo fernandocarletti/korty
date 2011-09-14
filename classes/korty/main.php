@@ -27,7 +27,7 @@ class Korty_Main extends Smarty {
 		parent::__construct();
 		
 		//Setting up all Smarty configuration settings on korty config file.
-		$config = kohana::config("korty");
+		$config = kohana::$config->load("korty");
 
 		$this->template_dir = $config['template_dir'];
 		$this->compile_dir = $config['compile_dir'];
