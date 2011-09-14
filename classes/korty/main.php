@@ -89,11 +89,8 @@ class Korty_Main extends Smarty {
 	public function render($template, $cache_id = null, $compile_id = null, $parent = null)
 	{
 		$session = Session::instance();
-		$session->set('_korty_must_render', TRUE);
-		
-		// Disable autorender. It prevents korty to send an exception when the template doesn't exists.
-		$this->disable_autorender();
-		
+		$session->set('_korty_rendered', TRUE);
+				
 		// If its and array, we parse the controller and/or action indexes associations 
 		if(is_array($template))
 		{
@@ -149,7 +146,7 @@ class Korty_Main extends Smarty {
 	public function disable_autorender()
 	{
 		$session = Session::instance();
-		$session->set('_korty_rendered', TRUE);
+		$session->set('_korty_disable_autorender', TRUE);
 	}
 
 	/**
@@ -158,7 +155,7 @@ class Korty_Main extends Smarty {
 	public function enable_autorender()
 	{
 		$session = Session::instance();
-		$session->set('_korty_rendered', FALSE);
+		$session->set('_korty_disable_autorender', FALSE);
 	}
 
 	/**

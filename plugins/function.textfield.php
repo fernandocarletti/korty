@@ -12,7 +12,7 @@ function smarty_function_textfield($params, $template)
 	
 	if( ! isset($params['id']))
 	{
-		throw new Exception('Id param needed for textfield.');
+		throw new Kohana_Exception('Id param needed for textfield.');
 	}
 
 	$tag = new Korty_Html('input');

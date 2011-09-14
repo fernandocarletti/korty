@@ -21,13 +21,13 @@ class Korty_Controller extends Kohana_Controller {
 	{
 		// Get session instance to manage template render status.
 		$session = Session::instance();
-		
+
 		// Execute template autoloading
 		if(kohana::config("korty.template_autoload"))
 		{ 
 			// Retrieve the list of controllers or actions to ignore the autoload execution
 			$ignored_list = kohana::config('korty.ignore_autoload');
-			$ignore_autoload = FALSE;
+			$ignore_autoload = $session->get('_korty_disable_autorender');
 			
 			// Loop ignored list
 			foreach($ignored_list as $controller)
@@ -70,7 +70,6 @@ class Korty_Controller extends Kohana_Controller {
 					$session = Session::instance();
 					$session->set('_korty_template_file', $template_file);
 					$this->korty->render($template_file);
-					$session->set('_korty_rendered', TRUE);
 				}
 				
 				// If some template was loaded before by korty::render(), we don't need to warn about missing template =]
@@ -81,9 +80,10 @@ class Korty_Controller extends Kohana_Controller {
 				
 					throw new Kohana_Exception($message);
 				}
-				
-				$session->delete('_korty_rendered');
 			}
 		}
+				
+		$session->delete('_korty_rendered');
+		$session->delete('_korty_disable_autorender');
 	}
 }

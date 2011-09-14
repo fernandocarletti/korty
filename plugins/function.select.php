@@ -13,11 +13,11 @@ function smarty_function_select($params, $template)
 	
 	if( ! isset($params['id']))
 	{
-		throw new Exception('Id param needed for select.');
+		throw new Kohana_Exception('Id param needed for select.');
 	}
 	elseif( ! isset($params['options']) OR ! is_array($params['options']))
 	{
-		throw new Exception('Options array param is needed for select.');
+		throw new Kohana_Exception('Options array param is needed for select.');
 	}
 
 	$select = new Korty_Html('select');

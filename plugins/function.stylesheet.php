@@ -3,7 +3,7 @@
 function smarty_function_stylesheet($params, $template) {
 	$stylesheet_tag = '<link rel="stylesheet" type="text/css"';
 
-	if($params['less'])
+	if(isset($params['less']) AND $params['less'])
 	{
 		$stylesheet_tag = '<link rel="stylesheet/less" type="text/css"';
 		unset($params['less']);

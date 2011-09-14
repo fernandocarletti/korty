@@ -12,7 +12,7 @@ function smarty_function_textarea($params, $template)
 	
 	if( ! isset($params['id']))
 	{
-		throw new Exception('Id param needed for textarea.');
+		throw new Kohana_Exception('Id param needed for textarea.');
 	}
 
 	$tag = new Korty_Html('textarea');
